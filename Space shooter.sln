@@ -1,9 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27703.2035
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Space shooter", "Space shooter.csproj", "{C17685E9-6856-8A64-15B5-B3E48F4F5844}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Space shooter", "Space shooter.csproj", "{24EF0503-2B97-C222-8207-801128C7E951}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +9,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C17685E9-6856-8A64-15B5-B3E48F4F5844}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C17685E9-6856-8A64-15B5-B3E48F4F5844}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C17685E9-6856-8A64-15B5-B3E48F4F5844}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C17685E9-6856-8A64-15B5-B3E48F4F5844}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24EF0503-2B97-C222-8207-801128C7E951}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24EF0503-2B97-C222-8207-801128C7E951}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24EF0503-2B97-C222-8207-801128C7E951}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24EF0503-2B97-C222-8207-801128C7E951}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {BE2648CB-69E2-4B51-8B3C-6E811950794B}
 	EndGlobalSection
 EndGlobal
