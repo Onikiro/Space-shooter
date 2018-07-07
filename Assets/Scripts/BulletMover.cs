@@ -26,9 +26,13 @@ public class BulletMover : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("stone") || other.IsTouchingLayers())
+        if (other.CompareTag("stone"))
         {
-            gameProcess.Score+= points;
+            gameProcess.Score += points;
+            pool.PutObject(gameObject);
+        }
+        else if (other.IsTouchingLayers())
+        {
             pool.PutObject(gameObject);
         }
     }

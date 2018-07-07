@@ -5,7 +5,17 @@ public class GameProcessHandler : MonoBehaviour {
 
     public static event Action OnScoreChanged; //ScoreUI
     public static event Action OnPaused;       //MenuUI
-    public int Score { get; set; }
+
+    private int score;
+    public int Score
+    {
+        get { return score; }
+        set
+        {
+            score = value;
+            if (OnScoreChanged != null) OnScoreChanged();
+        }
+    }
     private int points;
     private float period;
     private float nextPeriod;
@@ -49,7 +59,6 @@ public class GameProcessHandler : MonoBehaviour {
         {
             nextPeriod = Time.timeSinceLevelLoad + period;
             Score += points;
-            OnScoreChanged();
         }
     }
 

@@ -1345,7 +1345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3320a2d775ad2eb41b3a0a345dd02e62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  restartButtonRect: {fileID: 923151435}
 --- !u!1 &1493541664
 GameObject:
   m_ObjectHideFlags: 0
@@ -1667,7 +1666,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1294619583
+  randomSeed: -1301818083
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -2110,7 +2109,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 5
     enabled: 1
-    type: 4
+    type: 12
     angle: 0
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -4980,10 +4979,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2063948650}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.7071068, y: -0.7071068, z: 0, w: 0}
   m_LocalPosition: {x: 24, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 90}
