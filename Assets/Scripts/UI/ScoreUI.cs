@@ -1,28 +1,37 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreUI : MonoBehaviour {
-
-    [SerializeField]
-    private Text scoreCounter;
-    private GameProcessHandler gameProcess;
-
-    void OnEnable () {
-        GameProcessHandler.OnScoreChanged += GetScore;
-	}
-
-    void Start()
+namespace UI
+{
+    /// <inheritdoc />
+    /// <summary>
+    /// Handles the score ui-element
+    /// </summary>
+    public class ScoreUi : MonoBehaviour
     {
-        gameProcess = GameObject.Find("GameProcess").GetComponent<GameProcessHandler>();
-    }
 
-    void GetScore()
-    {
-        scoreCounter.text = "Score: " + gameProcess.Score;
-    }
+        [SerializeField]
+        private Text _scoreCounter;
+        private GameProcessHandler _gameProcess;
 
-    void OnDestroy()
-    {
-        GameProcessHandler.OnScoreChanged -= GetScore;
+        private void OnEnable()
+        {
+            GameProcessHandler.OnScoreChanged += GetScore;
+        }
+
+        private void Start()
+        {
+            _gameProcess = GameObject.Find("GameProcess").GetComponent<GameProcessHandler>();
+        }
+
+        private void GetScore()
+        {
+            _scoreCounter.text = "Score: " + _gameProcess.Score;
+        }
+
+        private void OnDestroy()
+        {
+            GameProcessHandler.OnScoreChanged -= GetScore;
+        }
     }
 }

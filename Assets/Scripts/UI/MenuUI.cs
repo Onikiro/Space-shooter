@@ -1,50 +1,57 @@
 ﻿using UnityEngine;
 
-public class MenuUI : MonoBehaviour {
-
-    GameObject pausePanel, resumeButton;
-
-    void Start()
+namespace UI
+{
+    /// <inheritdoc />
+    /// <summary>
+    /// Handle pause and game-over menus
+    /// </summary>
+    public class MenuUi : MonoBehaviour
     {
-        SubscribeEvents();
-        pausePanel = GameObject.Find("PausePanel");
-        resumeButton = GameObject.Find("Resume");
-        pausePanel.SetActive(false);
-    }
+        private GameObject _pausePanel, _resumeButton;
 
-    private void GameOverPanel()
-    {
-        pausePanel.SetActive(true);
-        resumeButton.SetActive(false);
-    }
+        private void Start()
+        {
+            SubscribeEvents();
+            _pausePanel = GameObject.Find("PausePanel");
+            _resumeButton = GameObject.Find("Resume");
+            _pausePanel.SetActive(false);
+        }
 
-    private void Pause()
-    {
-        pausePanel.SetActive(true);
-        resumeButton.SetActive(true);
-    }
+        private void GameOverPanel()
+        {
+            _pausePanel.SetActive(true);
+            _resumeButton.SetActive(false);
+        }
 
-    private void Resume()
-    {
-        pausePanel.SetActive(false);
-    }
+        private void Pause()
+        {
+            _pausePanel.SetActive(true);
+            _resumeButton.SetActive(true);
+        }
 
-    private void SubscribeEvents()
-    {
-        GameProcessHandler.OnPaused += Pause;
-        ButtonActions.OnResumed += Resume;
-        Controller.OnGameOver += GameOverPanel;
-    }
+        private void Resume()
+        {
+            _pausePanel.SetActive(false);
+        }
 
-    private void UnsubscribeEvents()
-    {
-        Controller.OnGameOver -= GameOverPanel;
-        GameProcessHandler.OnPaused -= Pause;
-        ButtonActions.OnResumed -= Resume;
-    }
+        private void SubscribeEvents()
+        {
+            GameProcessHandler.OnPaused += Pause;
+            ButtonActions.OnResumed += Resume;
+            Controller.OnGameOver += GameOverPanel;
+        }
 
-    private void OnDestroy()
-    {
-        UnsubscribeEvents();
+        private void UnsubscribeEvents()
+        {
+            Controller.OnGameOver -= GameOverPanel;
+            GameProcessHandler.OnPaused -= Pause;
+            ButtonActions.OnResumed -= Resume;
+        }
+
+        private void OnDestroy()
+        {
+            UnsubscribeEvents();
+        }
     }
 }

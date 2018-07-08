@@ -1,53 +1,62 @@
-﻿using System.Collections.Generic;
+﻿using SciptableObjects;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class ObjectPool : MonoBehaviour {
+/// <inheritdoc />
+/// <summary>
+/// Stores objects and get/put them in scene with SetActive
+/// </summary>
+public class ObjectPool : MonoBehaviour
+{
     [SerializeField]
-    GameObject Prefab;
-    private int size;
+    private GameObject _prefab;
+    private int _size;
     [HideInInspector]
-    public List<GameObject> pool = new List<GameObject>();
+    public List<GameObject> Pool = new List<GameObject>();
     [SerializeField]
-    private GeneralSettings settings;
+    private GeneralSettings _settings;
 
-    void Start()
+    private void Start()
     {
-        size = settings.PoolSize;
+        _size = _settings.PoolSize;
 
-        for (int i = 0; i < size; i++)
+        for (var i = 0; i < _size; i++)
         {
-            var newObject = Instantiate(Prefab);
-            newObject.transform.rotation = Quaternion.identity;
-            newObject.SetActive(false);
-            pool.Add(newObject);
+            AddObject();
         }
     }
 
+    /// <summary>
+    /// Gets first deactivated object from pool and activate them in scene
+    /// </summary>
+    /// <returns></returns>
     public GameObject GetObject()
     {
-        if(pool.Count < 1)
+        if (Pool.Count < 1)
         {
             AddObject();
         }
 
-        var lastObject = pool[pool.Count - 1];
-        pool.Remove(lastObject);
+        var lastObject = Pool.FirstOrDefault(x => !x.activeInHierarchy);
+        if (lastObject == null)
+        {
+            AddObject();
+            return GetObject();
+        }
+
         lastObject.SetActive(true);
         return lastObject;
     }
 
-    public void PutObject(GameObject newObject)
+    /// <summary>
+    /// Instantiate object in pool and deactivate them in scene
+    /// </summary>
+    private void AddObject()
     {
+        var newObject = Instantiate(_prefab);
         newObject.transform.rotation = Quaternion.identity;
         newObject.SetActive(false);
-        pool.Add(newObject);
-    }
-
-    void AddObject()
-    {
-        var newObject = Instantiate(Prefab);
-        newObject.transform.rotation = Quaternion.identity;
-        newObject.SetActive(false);
-        pool.Add(newObject);
+        Pool.Add(newObject);
     }
 }

@@ -1,39 +1,45 @@
-﻿using UnityEngine;
+﻿using SciptableObjects;
+using UnityEngine;
 
-public class BulletMover : MonoBehaviour {
+/// <inheritdoc />
+/// <summary>
+/// Handle the collisions of bullets and set velocity (speed configurable in Player Settings)
+/// </summary>
+public class BulletMover : MonoBehaviour
+{
 
+    private float _speed;
+    private GameProcessHandler _gameProcess;
+    private int _points;
     [SerializeField]
-    private float speed;
-    private ObjectPool pool;
-    private GameProcessHandler gameProcess;
-    private int points;
+    private GeneralSettings _generalSettings;
     [SerializeField]
-    private GeneralSettings settings;
+    private PlayerSettings _playerSettings;
 
 
-    void Awake()
+    private void Awake()
     {
-        pool = GameObject.Find("Ship").GetComponent<ObjectPool>();
-        gameProcess = GameObject.Find("GameProcess").GetComponent<GameProcessHandler>();
+        _gameProcess = GameObject.Find("GameProcess").GetComponent<GameProcessHandler>();
 
-        points = settings.PointsPerStone;
+        _points = _generalSettings.PointsPerStone;
+        _speed = _playerSettings.BulletSpeed;
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
-        GetComponent<Rigidbody2D>().velocity = transform.right * speed;
+        GetComponent<Rigidbody2D>().velocity = transform.right * _speed;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("stone"))
         {
-            gameProcess.Score += points;
-            pool.PutObject(gameObject);
+            _gameProcess.Score += _points;
+            gameObject.SetActive(false);
         }
         else if (other.IsTouchingLayers())
         {
-            pool.PutObject(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

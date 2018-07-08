@@ -13,3 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShipMovementSpeed: 8
   FireRate: 2
+  BulletSpeed: 10

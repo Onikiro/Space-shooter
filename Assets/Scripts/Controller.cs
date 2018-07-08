@@ -1,72 +1,78 @@
-﻿using System;
+﻿using SciptableObjects;
+using System;
 using UnityEngine;
 
-public class Controller : MonoBehaviour {
+/// <inheritdoc />
+/// <summary>
+/// Player controller 
+/// </summary>
+public class Controller : MonoBehaviour
+{
 
     public static event Action OnGameOver;
-    private float nextFire;
-    private Rigidbody2D rbody2d;
-    private float speed, fireRate;
-    private float selfSizeX = 1.5f, selfSizeY = 0.75f;
-    Transform shotPointer;
-    private ObjectPool bullets;
-    CameraBorders borders;
-    [SerializeField]
-    PlayerSettings settings;
+    private float _nextFire;
+    private Rigidbody2D _rbody2D;
+    private float _speed, _fireRate;
+    private const float SelfSizeX = 1.5f;
+    private const float SelfSizeY = 0.75f;
+    private Transform _shotPointer;
+    private ObjectPool _bullets;
+    private CameraBorders _borders;
+    [SerializeField] private PlayerSettings _settings;
 
-    void Start()
+    private void Start()
     {
-        rbody2d = GetComponent<Rigidbody2D>();
-        bullets = GetComponent<ObjectPool>();
-        borders = Camera.main.GetComponent<CameraBorders>();
-        shotPointer = GameObject.Find("shotPoint").transform;
+        _rbody2D = GetComponent<Rigidbody2D>();
+        _bullets = GetComponent<ObjectPool>();
+        _borders = Camera.main.GetComponent<CameraBorders>();
+        _shotPointer = GameObject.Find("shotPoint").transform;
 
-        speed = settings.ShipMovementSpeed;
-        fireRate = settings.FireRate;
+        _speed = _settings.ShipMovementSpeed;
+        _fireRate = _settings.FireRate;
     }
 
-    void Update()
+    private void Update()
     {
         Fire();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         Move();
 
-        rbody2d.position = new Vector2
+        _rbody2D.position = new Vector2
             (
-            Mathf.Clamp(rbody2d.position.x, borders.MinX + selfSizeX, borders.MaxX - selfSizeX),
-            Mathf.Clamp(rbody2d.position.y, borders.MinY + selfSizeY, borders.MaxY - selfSizeY)
+            Mathf.Clamp(_rbody2D.position.x, _borders.MinX + SelfSizeX, _borders.MaxX - SelfSizeX),
+            Mathf.Clamp(_rbody2D.position.y, _borders.MinY + SelfSizeY, _borders.MaxY - SelfSizeY)
             );
     }
 
-    void Move()
+    private void Move()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        var moveHorizontal = Input.GetAxis("Horizontal");
+        var moveVertical = Input.GetAxis("Vertical");
 
-        Vector2 movement = new Vector2(moveHorizontal, moveVertical);
+        var movement = new Vector2(moveHorizontal, moveVertical);
 
-        rbody2d.velocity = (movement * speed);
+        _rbody2D.velocity = (movement * _speed);
     }
 
-    void Fire()
+    private void Fire()
     {
-        if (Input.GetButton("Fire") && Time.time > nextFire)
+        if (Input.GetButton("Fire") && Time.time > _nextFire)
         {
-            if (fireRate == 0) return;
-            nextFire = Time.time + 1 / fireRate;
-            var bullet = bullets.GetObject();
-            bullet.transform.position = shotPointer.position;
+            if (_fireRate < 0.01f) return;
+            _nextFire = Time.time + 1 / _fireRate;
+            var bullet = _bullets.GetObject();
+            bullet.transform.position = _shotPointer.position;
         }
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.collider.CompareTag("stone"))
         {
-            OnGameOver();
+            if (OnGameOver != null) OnGameOver();
         }
     }
 }

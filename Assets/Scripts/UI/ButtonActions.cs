@@ -2,17 +2,25 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ButtonActions : MonoBehaviour {
-
-    public static event Action OnResumed;
-
-    public void Resume()
+namespace UI
+{
+    /// <inheritdoc />
+    /// <summary>
+    /// Actions for buttons in menu
+    /// </summary>
+    public class ButtonActions : MonoBehaviour
     {
-        OnResumed();
-    }
 
-    public void Restart()
-    {
-        SceneManager.LoadScene(0);
+        public static event Action OnResumed;
+
+        public void Resume()
+        {
+            if (OnResumed != null) OnResumed();
+        }
+
+        public void Restart()
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }

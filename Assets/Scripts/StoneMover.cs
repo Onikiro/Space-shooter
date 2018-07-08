@@ -1,30 +1,33 @@
-﻿using UnityEngine;
+﻿using SciptableObjects;
+using UnityEngine;
 
-public class StoneMover : MonoBehaviour {
+/// <inheritdoc />
+/// <summary>
+/// Handle the collisions of stones, configure spread angel and set velocity (spread angel and speed configurable in General Settings)
+/// </summary>
+public class StoneMover : MonoBehaviour
+{
 
-    private float speed, angle;
-    private ObjectPool pool;
+    private float _speed, _angle;
     [SerializeField]
-    private GeneralSettings settings;
+    private GeneralSettings _settings;
 
-    void Awake()
+    private void Awake()
     {
-        pool = GameObject.Find("StoneManager").GetComponent<ObjectPool>();
-
-        speed = settings.StoneMovementSpeed;
-        angle = settings.StoneSpreadAngle;
+        _speed = _settings.StoneMovementSpeed;
+        _angle = _settings.StoneSpreadAngle;
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
-        GetComponent<Rigidbody2D>().velocity = -Vector2FromAngle(Random.Range(-angle, angle)) * speed; 
+        GetComponent<Rigidbody2D>().velocity = -Vector2FromAngle(Random.Range(-_angle, _angle)) * _speed;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("bullet") || other.IsTouchingLayers())
         {
-            pool.PutObject(gameObject);
+            gameObject.SetActive(false);
         }
     }
 

@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 
+/// <inheritdoc />
+/// <summary>
+/// Configure borders for stones and bullets 
+/// </summary>
 public class CameraBorders : MonoBehaviour {
 
     public float MinX { get; private set; }
@@ -8,31 +12,31 @@ public class CameraBorders : MonoBehaviour {
     public float MaxY { get; private set; }
 
     [SerializeField]
-    private GameObject bulletBorder;
+    private GameObject _bulletBorder;
     [SerializeField]
-    private GameObject stoneBorderX;
+    private GameObject _stoneBorderX;
     [SerializeField]
-    private GameObject stoneBordertopY;
+    private GameObject _stoneBorderTopY;
     [SerializeField]
-    private GameObject stoneBorderbotY;
+    private GameObject _stoneBorderBotY;
     [SerializeField]
-    private float offset;
+    private float _offset;
 
-    void Start () {
-        var camera = Camera.main;
+    private void Start () {
+        var cam = Camera.main;
 
-        float camDistance = Vector2.Distance(transform.position, camera.transform.position);
-        Vector2 bottomCorner = camera.ViewportToWorldPoint(new Vector3(0, 0, camDistance));
-        Vector2 topCorner = camera.ViewportToWorldPoint(new Vector3(1, 1, camDistance));
+        var camDistance = Vector2.Distance(transform.position, cam.transform.position);
+        Vector2 bottomCorner = cam.ViewportToWorldPoint(new Vector3(0, 0, camDistance));
+        Vector2 topCorner = cam.ViewportToWorldPoint(new Vector3(1, 1, camDistance));
 
         MinX = bottomCorner.x;
         MaxX = topCorner.x;
         MinY = bottomCorner.y;
         MaxY = topCorner.y;
 
-        bulletBorder.transform.position = new Vector2(MaxX + bulletBorder.GetComponent<Collider2D>().bounds.size.x + offset, 0);
-        stoneBorderX.transform.position = new Vector2(MinX - stoneBorderX.GetComponent<Collider2D>().bounds.size.x - offset, 0);
-        stoneBordertopY.transform.position = new Vector2(0, MaxY + stoneBordertopY.GetComponent<Collider2D>().bounds.size.y + offset);
-        stoneBorderbotY.transform.position = new Vector2(0, MinY - stoneBorderbotY.GetComponent<Collider2D>().bounds.size.y - offset);
+        _bulletBorder.transform.position = new Vector2(MaxX + _bulletBorder.GetComponent<Collider2D>().bounds.size.x + _offset, 0);
+        _stoneBorderX.transform.position = new Vector2(MinX - _stoneBorderX.GetComponent<Collider2D>().bounds.size.x - _offset, 0);
+        _stoneBorderTopY.transform.position = new Vector2(0, MaxY + _stoneBorderTopY.GetComponent<Collider2D>().bounds.size.y + _offset);
+        _stoneBorderBotY.transform.position = new Vector2(0, MinY - _stoneBorderBotY.GetComponent<Collider2D>().bounds.size.y - _offset);
     }
 }

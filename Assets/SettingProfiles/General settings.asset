@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Name: General settings
   m_EditorClassIdentifier: 
   StoneMovementSpeed: 7.5
-  StoneSpawnRate: 1.5
+  StoneSpawnRate: 1
   StoneSpreadAngle: 10
-  PoolSize: 15
-  PointsPerStone: 1
+  PoolSize: 10
+  PointsPerStone: 3
   ScorePeriod: 1
   PointsPerPeriod: 1

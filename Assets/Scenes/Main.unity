@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 830f92a6119a36043adbceefd90f1bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreCounter: {fileID: 214995668}
+  _scoreCounter: {fileID: 214995668}
 --- !u!1 &494732964
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b91f9869f5843b43817066149128db5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings: {fileID: 11400000, guid: 0d3f3b2df22ff6f468f3c9b80a762b81, type: 2}
+  _settings: {fileID: 11400000, guid: 0d3f3b2df22ff6f468f3c9b80a762b81, type: 2}
 --- !u!50 &494732968
 Rigidbody2D:
   serializedVersion: 4
@@ -321,9 +321,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 140ac0f592a69ee4ea157e0ff49cb8fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 1861970726876476, guid: 9e18d7a440d838b4fa6fa9e333872301, type: 2}
-  pool: []
-  settings: {fileID: 11400000, guid: 30ebbde42d3dc744d8ddabc87e166635, type: 2}
+  _prefab: {fileID: 1861970726876476, guid: 9e18d7a440d838b4fa6fa9e333872301, type: 2}
+  Pool: []
+  _settings: {fileID: 11400000, guid: 30ebbde42d3dc744d8ddabc87e166635, type: 2}
 --- !u!60 &494732970
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -409,7 +409,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 158, y: 28}
+  m_SizeDelta: {x: 110, y: 28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &571856671
 MonoBehaviour:
@@ -619,9 +619,9 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 15
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -779,7 +779,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 158, y: 28}
+  m_SizeDelta: {x: 110, y: 28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &923151436
 MonoBehaviour:
@@ -917,7 +917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb0c4931f863d27439c5b00dd8193bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings: {fileID: 11400000, guid: 30ebbde42d3dc744d8ddabc87e166635, type: 2}
+  _settings: {fileID: 11400000, guid: 30ebbde42d3dc744d8ddabc87e166635, type: 2}
 --- !u!1 &1119225089
 GameObject:
   m_ObjectHideFlags: 0
@@ -959,9 +959,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 140ac0f592a69ee4ea157e0ff49cb8fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 1372311820707556, guid: 42f32c785fca0b54a84215770592695f, type: 2}
-  pool: []
-  settings: {fileID: 11400000, guid: 30ebbde42d3dc744d8ddabc87e166635, type: 2}
+  _prefab: {fileID: 1372311820707556, guid: 42f32c785fca0b54a84215770592695f, type: 2}
+  Pool: []
+  _settings: {fileID: 11400000, guid: 30ebbde42d3dc744d8ddabc87e166635, type: 2}
 --- !u!114 &1119225092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -973,7 +973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ea594268a0225e4691a57b8cabdd705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings: {fileID: 11400000, guid: 30ebbde42d3dc744d8ddabc87e166635, type: 2}
+  _settings: {fileID: 11400000, guid: 30ebbde42d3dc744d8ddabc87e166635, type: 2}
 --- !u!1 &1151199743
 GameObject:
   m_ObjectHideFlags: 0
@@ -1259,11 +1259,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38c117b0b846ab94dbef9cad01fcca46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletBorder: {fileID: 1669467986}
-  stoneBorderX: {fileID: 892988472}
-  stoneBordertopY: {fileID: 649752848}
-  stoneBorderbotY: {fileID: 871767323}
-  offset: 1
+  _bulletBorder: {fileID: 1669467986}
+  _stoneBorderX: {fileID: 892988472}
+  _stoneBorderTopY: {fileID: 649752848}
+  _stoneBorderBotY: {fileID: 871767323}
+  _offset: 1
 --- !u!1 &1378836181
 GameObject:
   m_ObjectHideFlags: 0
@@ -1519,9 +1519,9 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 15
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1666,7 +1666,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1301818083
+  randomSeed: 1589347730
   InitialModule:
     serializedVersion: 3
     enabled: 1

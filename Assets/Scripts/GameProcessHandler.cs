@@ -1,88 +1,88 @@
-﻿using System;
+﻿using SciptableObjects;
+using System;
+using System.Collections;
+using UI;
 using UnityEngine;
 
-public class GameProcessHandler : MonoBehaviour {
+/// <inheritdoc />
+/// <summary>
+/// Handles game process (Score, Ui, pause/resume, 
+/// </summary>
+public class GameProcessHandler : MonoBehaviour
+{
 
     public static event Action OnScoreChanged; //ScoreUI
     public static event Action OnPaused;       //MenuUI
 
-    private int score;
+    private int _score;
     public int Score
     {
-        get { return score; }
+        get { return _score; }
         set
         {
-            score = value;
+            _score = value;
             if (OnScoreChanged != null) OnScoreChanged();
         }
     }
-    private int points;
-    private float period;
-    private float nextPeriod;
-    bool isPaused;
-    bool inGame;
+    private int _points;
+    private float _period;
+    private bool _isPaused;
+    private bool _inGame;
     [SerializeField]
-    private GeneralSettings settings;
+    private GeneralSettings _settings;
 
-    void OnEnable()
+    private void OnEnable()
     {
         Controller.OnGameOver += GameOver;
         ButtonActions.OnResumed += Resume;
     }
 
-    void Start()
+    private void Start()
     {
-        inGame = true;
+        _inGame = true;
         Time.timeScale = 1;
-        points = settings.PointsPerPeriod;
-        period = settings.ScorePeriod;
+        _points = _settings.PointsPerPeriod;
+        _period = _settings.ScorePeriod;
+
+        StartCoroutine(AddScore());
     }
 
-    void Update()
+    private void Update()
     {
-        if(!isPaused)
+        if (Input.GetKeyDown(KeyCode.Escape) && _inGame)
         {
-        AddScore();
-        }
-        SetPauseGame();
-    }
-
-    private void GameOver()
-    {
-        inGame = false;
-        Time.timeScale = 0;
-    }
-
-    void AddScore()
-    {
-        if (Time.timeSinceLevelLoad > nextPeriod)
-        {
-            nextPeriod = Time.timeSinceLevelLoad + period;
-            Score += points;
-        }
-    }
-
-    void SetPauseGame()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape) && inGame)
-        {
-            if(!isPaused)
+            if (!_isPaused)
             {
                 Pause();
-                isPaused = true;
+                _isPaused = true;
             }
         }
     }
 
-    void Pause()
+    private void GameOver()
     {
-        OnPaused();
+        _inGame = false;
         Time.timeScale = 0;
     }
 
-    void Resume()
+    private IEnumerator AddScore()
     {
-        isPaused = false;
+        yield return null;
+        yield return new WaitForSeconds(_period);
+        yield return new WaitUntil(() => !_isPaused);
+        Score += _points;
+        yield return AddScore();
+    }
+
+    private static void Pause()
+    {
+        if (OnPaused != null) OnPaused();
+        Time.timeScale = 0;
+    }
+
+    private void Resume()
+    {
+        _isPaused = false;
         Time.timeScale = 1;
     }
 
@@ -90,5 +90,17 @@ public class GameProcessHandler : MonoBehaviour {
     {
         Controller.OnGameOver -= GameOver;
         ButtonActions.OnResumed -= Resume;
+    }
+
+    private void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus)
+        {
+            if (!_isPaused)
+            {
+                Pause();
+                _isPaused = true;
+            }
+        }
     }
 }

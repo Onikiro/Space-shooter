@@ -99,8 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3681efe40aa861d41921fa0bdd8a2a0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  settings: {fileID: 11400000, guid: 30ebbde42d3dc744d8ddabc87e166635, type: 2}
+  _speed: 0
+  _generalSettings: {fileID: 11400000, guid: 30ebbde42d3dc744d8ddabc87e166635, type: 2}
+  _playerSettings: {fileID: 11400000, guid: 0d3f3b2df22ff6f468f3c9b80a762b81, type: 2}
 --- !u!212 &212924324594147202
 SpriteRenderer:
   m_ObjectHideFlags: 1
